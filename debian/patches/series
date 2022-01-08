@@ -1,0 +1,3 @@
+0001-Support-installing-into-DESTDIR.patch
+0002-Allow-overriding-plugin-installation-directory.patch
+0003-Fix-libghdl-lib-search.patch

@@ -1,0 +1,37 @@
+From f6fdc36d556173bc18f5e3c34f1ad18c925f72bc Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Daniel=20Gr=C3=B6ber?= <dxld@darkboxed.org>
+Date: Sat, 8 Jan 2022 06:17:06 +0100
+Subject: [PATCH 1/2] Support installing into $DESTDIR
+
+This makes packaging easier for distributions as installation is usually
+staged in a temporary directory when building intallable packages.
+---
+ Makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index c2d9d25..06d768d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -12,6 +12,7 @@ LIBGHDL_LIB:=$(shell $(GHDL) --libghdl-library-path)
+ LIBGHDL_INC:=$(shell $(GHDL) --libghdl-include-dir)
+ 
+ ALL_LDFLAGS=$(LIBGHDL_LIB) -Wl,-rpath,$(dir $(LIBGHDL_LIB)) $(LDFLAGS)
++DATDIR:=$(shell $(YOSYS_CONFIG) --datdir)
+ 
+ ALL_CFLAGS=-fPIC -DYOSYS_ENABLE_GHDL -I$(LIBGHDL_INC) $(CFLAGS)
+ 
+@@ -29,8 +30,8 @@ clean: force
+ 	$(RM) -f ghdl.$(SOEXT) ghdl.o
+ 
+ install: ghdl.$(SOEXT)
+-	$(YOSYS_CONFIG) --exec mkdir -p --datdir/plugins
+-	$(YOSYS_CONFIG) --exec cp $< --datdir/plugins
++	$(YOSYS_CONFIG) --exec mkdir -p $(DESTDIR)$(DATDIR)/plugins
++	$(YOSYS_CONFIG) --exec cp $< $(DESTDIR)$(DATDIR)/plugins
+ 
+ -include src/ghdl.d
+ 
+-- 
+2.30.2
+

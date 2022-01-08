@@ -1,0 +1,5 @@
+yosys-plugin-ghdl (0.0~git20211127.09a32cd-1) UNRELEASED; urgency=medium
+
+  * Initial release (Closes: #1003315)
+
+ -- Daniel Gröber <dxld@darkboxed.org>  Mon, 06 Feb 2023 21:28:50 +0100

@@ -1,0 +1,26 @@
+Source: yosys-plugin-ghdl
+Section: electronics
+Priority: optional
+Maintainer: Daniel Gröber <dxld@darkboxed.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ yosys-dev,
+ libghdl-dev (>= 2.0.0),
+ ghdl-mcode (>= 2.0.0)
+Standards-Version: 4.6.0
+Homepage: https://yosyshq.net/yosys/
+Vcs-Browser: https://salsa.debian.org/electronics-team/yosys-plugin-ghdl
+Vcs-Git: https://salsa.debian.org/electronics-team/yosys-plugin-ghdl.git
+Rules-Requires-Root: no
+
+Package: yosys-plugin-ghdl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: VHDL to RTL synthesis plugin using GHDL
+ This yosys plugin allows running RTL synthesis from VHDL source code
+ instead of yosys' native Verilog.
+ .
+ This allows a full synthesis flow from VHDL to hardware for FPGAs where
+ the GHDL compiler is used to analyse the VHDL sources and yosys is used to
+ perform logic optimization, technology mapping and convertion to netlist
+ format.

@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install -- PLUGINDIR=/usr/lib/yosys/plugins/
+
+override_dh_auto_clean:
+	dh_auto_clean
+	-rm ghdl.d
+
+override_dh_installdocs:
+	dh_installdocs
+	find debian/yosys-plugin-ghdl/usr/share/doc/yosys-plugin-ghdl/examples \
+		-type f -exec chmod -x \{} +
